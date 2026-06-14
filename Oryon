@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lalramsanga | Digital Creator & Freelancer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#00d4ff;
+    --secondary:#7b61ff;
+    --accent:#00ffa3;
+    --dark:#081120;
+    --dark2:#101b2d;
+    --glass:rgba(255,255,255,0.08);
+    --border:rgba(255,255,255,0.15);
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(135deg,#081120,#0f172a,#121c34);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Animated background */
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    overflow:hidden;
+}
+
+.bubble{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(10px);
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+.gradient{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(0,212,255,.25), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(123,97,255,.25), transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(0,255,163,.15), transparent 35%);
+}
+
+/* Navbar */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(12px);
+    background:rgba(0,0,0,.15);
+    z-index:1000;
+}
+
+.logo{
+    font-size:1.6rem;
+    font-weight:800;
+    background:linear-gradient(to right,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--primary);
+}
+
+/* Sections */
+section{
+    min-height:100vh;
+    padding:120px 8% 80px;
+}
+
+.glass{
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+}
+
+/* Hero */
+.hero{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.profile-img{
+    width:220px;
+    height:220px;
+    margin:auto;
+    position:relative;
+    animation:floatProfile 4s ease-in-out infinite;
+}
+
+.profile-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid rgba(255,255,255,.15);
+    box-shadow:
+        0 0 20px #00d4ff,
+        0 0 40px #7b61ff,
+        0 0 60px rgba(123,97,255,.5);
+}
+
+.profile-img::before{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border-radius:50%;
+    background:linear-gradient(
+        45deg,
+        #00d4ff,
+        #7b61ff,
+        #00ffa3,
+        #00d4ff
+    );
+    z-index:-1;
+    animation:rotate 8s linear infinite;
+}
+
+@keyframes rotate{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes floatProfile{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-top:25px;
+}
+
+.hero h1 span{
+    background:linear-gradient(to right,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    margin-top:20px;
+    font-size:1.1rem;
+    color:#d5d5d5;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 28px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.primary{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+}
+
+.secondary{
+    border:1px solid rgba(255,255,255,.2);
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+/* Cards */
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:2.5rem;
+}
+
+.about-card,
+.skills-grid,
+.link-generator,
+.faq{
+    padding:35px;
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.skill{
+    padding:25px;
+    text-align:center;
+}
+
+/* Link Generator */
+.inputs{
+    display:grid;
+    gap:15px;
+}
+
+input, select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
+    color:white;
+}
+
+input::placeholder{
+    color:#ccc;
+}
+
+.result{
+    margin-top:20px;
+    padding:20px;
+    border-radius:12px;
+    background:rgba(255,255,255,.06);
+    word-wrap:break-word;
+}
+
+/* FAQ */
+.faq-item{
+    margin-bottom:15px;
+}
+
+.faq-question{
+    padding:18px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:.4s;
+    padding:0 18px;
+}
+
+.faq-item.active .faq-answer{
+    max-height:200px;
+    padding:18px;
+}
+
+/* Contact */
+.contact-card{
+    text-align:center;
+    padding:40px;
+}
+
+.socials{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.socials a{
+    text-decoration:none;
+    color:white;
+    padding:12px 18px;
+    border-radius:50px;
+    background:rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:30px;
+    color:#aaa;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    nav ul{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:2.5rem;
+    }
+
+    .section-title{
+        font-size:2rem;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="gradient"></div>
+<div class="background" id="background"></div>
+
+<nav>
+    <div class="logo">Lalramsanga</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="profile-img">
+    <img src="Pic/Profile photo.jpeg" alt="Reload">
+</div>
+
+```
+    <h1>Hello, I'm <span>Lalramsanga</span></h1>
+
+<p>
+Teacher • Digital Creator • Freelancer
+</p>
+
+<p style="max-width:700px;margin:20px auto;color:#cfd8dc;">
+Helping businesses and creators grow online through content creation,
+automation, social media management and digital solutions.
+</p>
+
+    <div class="buttons">
+        <a href="#contact" class="btn primary">Contact Me</a>
+        <a href="#links" class="btn secondary">My Links</a>
+    </div>
+</div>
+```
+
+</section>
+
+<section id="about">
+<div class="container">
+    <h2 class="section-title">About Me</h2>
+
+```
+<div class="glass about-card">
+    <p>
+        Welcome to my digital space. I help people and businesses
+        grow online through content creation, social media management,
+        automation, digital solutions, and freelancing services.
+    </p>
+</div>
+```
+
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+    <h2 class="section-title">Skills</h2>
+
+```
+<div class="skills-grid">
+    <div class="glass skill">Advanced Excel</div>
+    <div class="glass skill">Content Creation</div>
+    <div class="glass skill">Social Media Marketing</div>
+    <div class="glass skill">Automation</div>
+    <div class="glass skill">Teaching</div>
+    <div class="glass skill">Digital Branding</div>
+</div>
+```
+
+</div>
+</section>
+
+<section id="links">
+<div class="container">
+    <h2 class="section-title">Link Generator</h2>
+
+```
+<div class="glass link-generator">
+
+    <div class="inputs">
+        <select id="platform">
+            <option>LinkedIn</option>
+            <option>Upwork</option>
+            <option>Fiverr</option>
+            <option>WhatsApp</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Email</option>
+        </select>
+
+        <input id="username" placeholder="Enter username / number / email">
+        <button class="btn primary" onclick="generateLink()">Generate Link</button>
+    </div>
+
+    <div class="result" id="result">
+        Your generated link will appear here...
+    </div>
+
+</div>
+```
+
+</div>
+</section>
+
+<section id="faq">
+<div class="container">
+<h2 class="section-title">Frequently Asked Questions</h2>
+
+<div class="faq">
+
+<div class="glass faq-item">
+<div class="faq-question">What services do you offer?</div>
+<div class="faq-answer">
+Content creation, digital marketing, automation, Excel solutions, and freelancing services.
+</div>
+</div>
+
+<div class="glass faq-item">
+<div class="faq-question">Do you work internationally?</div>
+<div class="faq-answer">
+Yes. I work with clients from anywhere in the world.
+</div>
+</div>
+
+<div class="glass faq-item">
+<div class="faq-question">How can I contact you?</div>
+<div class="faq-answer">
+Through WhatsApp, email, LinkedIn, Fiverr, Upwork, or social media.
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+    <h2 class="section-title">Connect With Me</h2>
+
+```
+<div class="glass contact-card">
+
+    <h3>Let's Connect</h3>
+
+    <div class="socials">
+
+        <a href="https://www.linkedin.com/in/lalramsanga-fanai-a932b7415?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">
+            LinkedIn
+        </a>
+
+        <a href="https://wa.me/message/WP6DEE4GVBJDP1" target="_blank">
+            WhatsApp
+        </a>
+
+        <a href="https://www.instagram.com/mr_ma_ra_ma?igsh=MXFvYjA4cWlmNHZ5aQ==" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://www.facebook.com/share/1CqvrvpP6j/" target="_blank">
+            Facebook
+        </a>
+
+        <a href="mailto:ramsangaf@gmail.com">
+            Email
+        </a>
+
+    </div>
+
+</div>
+</div>
+</div>
+```
+
+</div>
+</section>
+
+<footer>
+© 2026 Oryon | Designed & Developed by Lalramsanga
+</footer>
+
+<script>
+
+// Bubble Background
+const bg=document.getElementById("background");
+
+for(let i=0;i<35;i++){
+    const bubble=document.createElement("div");
+    bubble.classList.add("bubble");
+
+    let size=Math.random()*120+30;
+
+    bubble.style.width=size+"px";
+    bubble.style.height=size+"px";
+
+    bubble.style.left=Math.random()*100+"%";
+
+    bubble.style.animationDuration=
+    (Math.random()*20+15)+"s";
+
+    bubble.style.animationDelay=
+    (Math.random()*10)+"s";
+
+    bg.appendChild(bubble);
+}
+
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+        item.classList.toggle('active');
+    });
+});
+
+// Link Generator
+function generateLink(){
+
+    const platform=document.getElementById("platform").value;
+
+    let link="";
+
+    switch(platform){
+
+        case "LinkedIn":
+            link="https://www.linkedin.com/in/lalramsanga-fanai-a932b7415?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+            break;
+
+        case "WhatsApp":
+            link="https://wa.me/message/WP6DEE4GVBJDP1";
+            break;
+
+        case "Instagram":
+            link="https://www.instagram.com/mr_ma_ra_ma?igsh=MXFvYjA4cWlmNHZ5aQ==";
+            break;
+
+        case "Facebook":
+            link="https://www.facebook.com/share/1CqvrvpP6j/";
+            break;
+
+        case "Email":
+            link="mailto:your@email.com";
+            break;
+
+        default:
+            link="Coming Soon";
+    }
+
+    document.getElementById("result").innerHTML =
+    `<a href="${link}" target="_blank" style="color:#00d4ff">${link}</a>`;
+}
+
+</script>
+
+</body>
+</html>
